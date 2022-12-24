@@ -4,6 +4,7 @@ import { Box } from '@mui/system';
 import React from 'react'
 import Center from './Center';
 import useForm from '../hooks/userForm'
+import { createAPIEndpoint, ENDPOINTS } from '../api/index';
 
 export default function Login() {
 
@@ -23,7 +24,10 @@ export default function Login() {
   const login = e => {
     e.preventDefault();
     if(validate())
-     console.log(values);
+     createAPIEndpoint(ENDPOINTS.participant)
+     .post(values)
+     .then(res => console.log(res))
+     .catch(err => console.log(err))
   }
 
   const validate = () =>{
